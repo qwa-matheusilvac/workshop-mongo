@@ -1,6 +1,7 @@
 package github.matheusilvac.workshopmongo.web.controller;
 
 import github.matheusilvac.workshopmongo.doman.dto.UserReqDTO;
+import github.matheusilvac.workshopmongo.doman.persistence.entity.Post;
 import github.matheusilvac.workshopmongo.doman.persistence.entity.User;
 import github.matheusilvac.workshopmongo.doman.service.UserService;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 
 @RestController
@@ -47,5 +49,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable String id) {
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
