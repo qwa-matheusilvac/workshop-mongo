@@ -7,6 +7,5 @@ public record PostReqDto(
         String title,
         String body,
         AuthorDto authorDto
-
 ) {
 }
