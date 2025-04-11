@@ -28,4 +28,20 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    public void deleteById(String id){
+       User user = findById(id);
+       if(user != null){
+           userRepository.delete(user);
+       } else {
+           throw new ObjectNotFoudException("Não encontrado usuario com id: " + id);
+       }
+    }
+
+    public User update(UserReqDTO user, String id){
+        User newUser = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoudException("Não encontrado usuario com id: " + id));
+        newUser.setName(user.name());
+        newUser.setEmail(user.email());
+        return userRepository.save(newUser);
+    }
+
 }
