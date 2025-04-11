@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class PostService {
@@ -16,6 +18,9 @@ public class PostService {
 
     public Page<Post> findAll(Pageable pageable){
         return postRepository.findAll(pageable);
+    }
+    public Page<Post> findByTitleContains(String title, Pageable pageable){
+        return postRepository.findByTitleContainsIgnoreCase(title, pageable);
     }
 
     public Post findById(String id){

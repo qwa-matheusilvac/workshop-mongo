@@ -25,10 +25,16 @@ public class PostController {
         return  postService.findAll(pageable);
     }
 
+    @GetMapping("/titleSearch")
+    public Page<Post> findByTitle(@PageableDefault(size = 10) Pageable pageable, @RequestParam(value = "text") String title) {
+        return postService.findByTitleContains(title, pageable);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Post> findById(@PathVariable String id) {
         return ResponseEntity.ok().body(postService.findById(id));
     }
+
 
     @PostMapping
     public ResponseEntity<Post> save(@RequestBody PostReqDto Post, UriComponentsBuilder ucBuilder) {
