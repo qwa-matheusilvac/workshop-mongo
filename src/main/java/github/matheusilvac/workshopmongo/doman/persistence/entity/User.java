@@ -1,5 +1,6 @@
 package github.matheusilvac.workshopmongo.doman.persistence.entity;
 
+import github.matheusilvac.workshopmongo.doman.dto.UserReqDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,4 +19,8 @@ public class User {
     private String name;
     private String email;
 
+    public User(UserReqDTO user) {
+        this.name = user.name();
+        this.email = user.email();
+    }
 }
