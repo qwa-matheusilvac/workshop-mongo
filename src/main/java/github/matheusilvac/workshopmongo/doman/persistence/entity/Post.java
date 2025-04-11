@@ -1,5 +1,6 @@
 package github.matheusilvac.workshopmongo.doman.persistence.entity;
 
+import github.matheusilvac.workshopmongo.doman.dto.AuthorDto;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,6 +18,6 @@ public class Post {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDto author;
 
 }

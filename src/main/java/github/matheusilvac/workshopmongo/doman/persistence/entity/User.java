@@ -1,5 +1,6 @@
 package github.matheusilvac.workshopmongo.doman.persistence.entity;
 
+import github.matheusilvac.workshopmongo.doman.dto.AuthorDto;
 import github.matheusilvac.workshopmongo.doman.dto.UserReqDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;

@@ -1,5 +1,6 @@
 package github.matheusilvac.workshopmongo.config;
 
+import github.matheusilvac.workshopmongo.doman.dto.AuthorDto;
 import github.matheusilvac.workshopmongo.doman.persistence.entity.Post;
 import github.matheusilvac.workshopmongo.doman.persistence.entity.User;
 import github.matheusilvac.workshopmongo.doman.persistence.repository.PostRepository;
@@ -21,10 +22,16 @@ public class Instantiation implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        User user = new User(null, "John Doe", "john@doe.com" );
+        User user2 = new User(null, "Jane Doe", "jane@doe.com" );
+        userRepository.saveAll(Arrays.asList(user, user2));
+
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Post post1 = new Post(null, dateFormat.parse("21/03/2018"), "Bom dia", " Irei a São Paulo hoje", new User(null, "Maria", "maria@gmail.com"));
-        Post post2 = new Post(null, dateFormat.parse("21/03/2018"), "JJK", "Gojo é o mais forte", new User(null, "Maria", "maria@gmail.com"));
+        Post post1 = new Post(null, dateFormat.parse("21/03/2018"), "Bom dia", " Irei a São Paulo hoje", new AuthorDto(user));
+        Post post2 = new Post(null, dateFormat.parse("21/03/2018"), "JJK", "Gojo é o mais forte", new AuthorDto(user2));
         postRepository.saveAll(Arrays.asList(post1, post2));
+
         System.out.println("all users saved");
     }
 }
